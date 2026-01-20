@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using BookingsApi.Models;
 using BookingsApi.Services;
+using BookingsApi.Interfaces;
 
 namespace BookingsApi.Controllers
 {
@@ -8,7 +9,11 @@ namespace BookingsApi.Controllers
     [Route("api/[controller]")]
     public class BookingsController : ControllerBase
     {
-        private readonly BookingService _service = new BookingService();
+        private readonly IBookingService _service;
+        public BookingsController(IBookingService service)
+        {
+            _service = service;
+        }
 
         [HttpGet]
         public IActionResult GetAll()

@@ -1,18 +1,14 @@
+using BookingsApi.Interfaces;
 using BookingsApi.Models;
 using BookingsApi.Repositories;
 
 namespace BookingsApi.Services
 {
-    public class BookingService
+    public class BookingService : IBookingService
     {
-        private readonly BookingRepository _repo;
+        private readonly IBookingRepository _repo;
 
-        public BookingService()
-        {
-            _repo = new BookingRepository();
-        }
-
-        public BookingService(BookingRepository repo)
+        public BookingService(IBookingRepository repo)
         {
             _repo = repo;
         }
