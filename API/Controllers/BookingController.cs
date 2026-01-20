@@ -42,5 +42,15 @@ namespace BookingsApi.Controllers
                 return Conflict("Booking overlaps an existing reservation.");
             }
         }
+        [HttpDelete("{id:int}")]
+        public IActionResult Cancel(int id)
+        {
+            var deleted = _service.Cancel(id);
+            if (deleted)
+            {
+                return NoContent();
+            }
+            return NotFound();
+        }
     }
 }

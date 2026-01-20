@@ -19,11 +19,14 @@ namespace BookingsApi.Repositories
             return booking;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             var booking = GetById(id);
-            if (booking != null)
-                _bookings.Remove(booking);
+            if (booking == null)
+                return false;
+
+            _bookings.Remove(booking);
+            return true;
         }
     }
 }
