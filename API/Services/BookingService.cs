@@ -20,7 +20,7 @@ namespace BookingsApi.Services
         /// <summary>
         /// Returnerar true om tidsintervallet krockar med befintlig bokning
         /// </summary>
-        public bool HasOverlap(int roomId, DateTime from, DateTime to)
+        private bool HasOverlap(int roomId, DateTime from, DateTime to)
         {
             return _repo.GetAll().Any(b =>
             b.RoomId == roomId &&
