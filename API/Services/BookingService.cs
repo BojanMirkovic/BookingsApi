@@ -1,6 +1,5 @@
 using BookingsApi.Interfaces;
 using BookingsApi.Models;
-using BookingsApi.Repositories;
 
 namespace BookingsApi.Services
 {
