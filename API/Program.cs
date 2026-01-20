@@ -1,6 +1,6 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using BookingsApi.Interfaces;
+using BookingsApi.Repositories;
+using BookingsApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +9,9 @@ builder.Services.AddControllers();
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+//DI for BookingService, BookingRepository
+builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 var app = builder.Build();
 
 // Enable Swagger  middleware ONLY in Development
