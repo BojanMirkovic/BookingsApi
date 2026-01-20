@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using BookingsApi.Models;
-using BookingsApi.Services;
 using BookingsApi.Interfaces;
 
 namespace BookingsApi.Controllers
