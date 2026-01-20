@@ -7,7 +7,7 @@ namespace BookingsApi.Controllers
     [ApiController]
     [Route("api/[controller]")]
     public class BookingsController : ControllerBase
-    {    
+    {
         private readonly BookingService _service = new BookingService();
 
         [HttpGet]
@@ -25,14 +25,17 @@ namespace BookingsApi.Controllers
 
         [HttpPost]
         public IActionResult Create([FromBody] Booking booking)
-        {            
-            if (_service.HasOverlap(booking.RoomId, booking.From, booking.To))
+        {
+            try
             {
+                var created = _service.Create(booking);
+                return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
+            }
+            catch (InvalidOperationException)
+            {
+
                 return Conflict("Booking overlaps an existing reservation.");
             }
-
-            var created = _service.Create(booking);
-            return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
-        }        
+        }
     }
 }

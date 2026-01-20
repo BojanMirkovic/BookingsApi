@@ -4,7 +4,7 @@ using BookingsApi.Repositories;
 namespace BookingsApi.Services
 {
     public class BookingService
-    {        
+    {
         private readonly BookingRepository _repo;
 
         public BookingService()
@@ -26,11 +26,13 @@ namespace BookingsApi.Services
         /// </summary>
         public bool HasOverlap(int roomId, DateTime from, DateTime to)
         {
-            return _repo.GetAll().Any(b => b.RoomId == roomId && !(b.To <= from || b.From > to));
+            return _repo.GetAll().Any(b =>
+            b.RoomId == roomId &&
+            from < b.To && b.From < to);
         }
 
         public Booking Create(Booking booking)
-        {        
+        {
             if (HasOverlap(booking.RoomId, booking.From, booking.To))
                 throw new InvalidOperationException("Booking overlaps");
 
