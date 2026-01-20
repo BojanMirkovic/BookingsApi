@@ -35,6 +35,6 @@ namespace BookingsApi.Services
             return _repo.Add(booking);
         }
 
-        public void Cancel(int id) => _repo.Delete(id);
+        public bool Cancel(int id) => _repo.Delete(id);
     }
 }
